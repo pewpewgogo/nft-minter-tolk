@@ -1,6 +1,8 @@
-const opMintItem = "mintItem"c; // 0x90231E2C
-const opInternalMintItem = "internalMintItem"c; // 0x0505DC31
-const opAdminClaim = "adminClaim"c; // 0x1B9403D8
+import "@stdlib/common.tolk"
+
+const opMintItem = stringCrc32("mintItem"); // 0x90231E2C
+const opInternalMintItem = stringCrc32("internalMintItem"); // 0x0505DC31
+const opAdminClaim = stringCrc32("adminClaim"); // 0x1B9403D8
 
 const errorMintNotAllowed = 201;
 const errorNotOwnerTryingToMint = 202;

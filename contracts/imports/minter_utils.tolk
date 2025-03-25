@@ -6,7 +6,7 @@ fun packMinterItemData(ownerAddress: slice, minterAddress: slice, publicKey: int
       .storeUint(startTime, 32)
       .storeSlice(minterAddress)
       .storeSlice(ownerAddress)
-      .storeUint(publicKey)
+      .storeUint(publicKey, 256)
       .storeRef(content)
   .endCell();
 }

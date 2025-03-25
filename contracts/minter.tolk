@@ -91,7 +91,7 @@ fun onInternalMessage(inMsgFull: cell, inMsgBody: slice) {
     if (op == opAdminClaim) {
         loadData();
         assert(isSliceBitsEqual(fromAddress, ctxAdminAddress)) throw errorNotAdmin;
-        val toSendAmount: int = getMyOriginalBalance() - 1_000_000;
+        val toSendAmount: int = getMyOriginalBalance() - ton("0.1");
         assert(toSendAmount > 0) throw errorNotEnoughBalance;
 
         sendTon(ctxAdminAddress, toSendAmount);

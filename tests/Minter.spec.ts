@@ -33,7 +33,6 @@ describe('Minter', () => {
     });
 
     it('should deploy', async () => {
-        // the check is done inside beforeEach
-        // blockchain and minter are ready to use
+
     });
 });

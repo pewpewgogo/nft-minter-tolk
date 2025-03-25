@@ -31,7 +31,7 @@ fun saveData() {
             .storeUint(ctxStartTime, 32)
             .storeSlice(ctxMinterAddress)
             .storeSlice(ctxOwnerAddress)
-            .storeUint(ctxServicePublicKey)
+            .storeUint(ctxServicePublicKey, 256)
             .storeRef(ctxContentNftItem)
         .endCell()
     );
@@ -40,7 +40,7 @@ fun saveData() {
 @inline
 fun mintItem(queryId: int) {
     var msg: cell = beginCell()
-        .storeUint(0x18, 6)
+        .storeUint(BOUNCEABLE, 6)
         .storeSlice(ctxMinterAddress)
         .storeCoins(0)
         .storeUint(1, 107)
@@ -64,34 +64,33 @@ fun isMintAllowed(): bool {
     if (now() > ctxStartTime + oneDay * 7) {
         return false;
     }
-
     return true;
 }
 
 @inline
-fun calculatePrice(): slice {
+fun calculatePrice(): int {
     if (now() > ctxStartTime + oneDay * 7) {
-        return 20_000_000_000; // 20 TON
+        return ton("20"); // 20 TON
     }
     if (now() > ctxStartTime + oneDay * 6) {
-        return 15_000_000_000; // 15 TON
+        return ton("15"); // 15 TON
     }
     if (now() > ctxStartTime + oneDay * 5) {
-        return 10_000_000_000; // 10 TON
+        return ton("10"); // 10 TON
     }
     if (now() > ctxStartTime + oneDay * 4) {
-        return 8_000_000_000; // 8 TON
+        return ton("8"); // 8 TON
     }
     if (now() > ctxStartTime + oneDay * 3) {
-        return 5_000_000_000; // 5 TON
+        return ton("5"); // 5 TON
     }
     if (now() > ctxStartTime + oneDay * 2) {
-        return 3_000_000_000; // 3 TON
+        return ton("3"); // 3 TON
     }
     if (now() > ctxStartTime + oneDay) {
-        return 2_000_000_000; // 2 TON
+        return ton("2"); // 2 TON
     }
-    return 1_000_000_000; // 1 TON
+    return ton("1"); // 1 TON
 }
 
 @inline

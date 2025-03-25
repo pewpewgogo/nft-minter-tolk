@@ -1,9 +1,21 @@
 import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Sender, SendMode } from '@ton/core';
 
-export type MinterConfig = {};
+export type MinterConfig = {
+    adminAddress: Address;
+    collectionAddress: Address;
+    servicePublicKey: bigint;
+    startTime: bigint;
+    minterItemCode: Cell;
+};
 
 export function minterConfigToCell(config: MinterConfig): Cell {
-    return beginCell().endCell();
+    return beginCell()
+        .storeAddress(config.adminAddress)
+        .storeAddress(config.collectionAddress)
+        .storeUint(config.servicePublicKey, 256)
+        .storeUint(config.startTime, 32)
+        .storeRef(config.minterItemCode)
+    .endCell();
 }
 
 export class Minter implements Contract {
